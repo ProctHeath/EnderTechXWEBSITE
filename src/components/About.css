@@ -1,0 +1,67 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.about-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.about-image {
+  display: flex;
+  justify-content: center;
+}
+
+.morph-wrapper {
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+  position: relative;
+  overflow: hidden;
+}
+
+.morph-bg {
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: blur(40px);
+  opacity: 0.5;
+  animation: morph 8s ease-in-out infinite;
+}
+
+.morph-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: white;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-image {
+    order: -1;
+  }
+  .morph-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+}
