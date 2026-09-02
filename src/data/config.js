@@ -4,7 +4,7 @@ const config = {
   description: "Création d'applications web, mobiles et IoT avec les technologies modernes.",
   heroSubtitle: 'Fullstack & Mobile Developer',
   heroCommand: 'git clone https://github.com/EnderTechX/portfolio.git',
-  email: 'contact@endertechx.dev',
+  email: 'contact@techxcorp.dev',
   location: 'France',
   resumeUrl: '#',
 
@@ -65,7 +65,7 @@ const config = {
       tags: ['Flutter', 'SwiftUI', 'Dart', 'Fitness'],
       image: 'https://picsum.photos/seed/fitplanstudio/600/400',
       youtube: '#',
-      github: 'https://github.com/ProctHeath/fitplan_studio',
+      github: 'https://github.com/ProctHeath/fitplan_studio_android',
     },
     {
       title: 'Portfolio Neon',
@@ -73,7 +73,7 @@ const config = {
       tags: ['React', 'Vite', 'CSS', 'JavaScript'],
       image: 'https://picsum.photos/seed/portfolioneon/600/400',
       youtube: '#',
-      github: 'https://github.com/ProctHeath/portfolio',
+      github: 'https://github.com/ProctHeath/',
     },
     {
       title: 'Snake Game',
