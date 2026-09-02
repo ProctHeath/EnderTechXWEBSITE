@@ -1,5 +1,5 @@
 const config = {
-  name: 'EnderTechX',
+  name: 'TechXCorp',
   tagline: 'The Future of Web Coding',
   description: "Création d'applications web, mobiles et IoT avec les technologies modernes.",
   heroSubtitle: 'Fullstack & Mobile Developer',
