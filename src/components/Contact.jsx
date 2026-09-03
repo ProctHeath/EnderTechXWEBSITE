@@ -5,6 +5,8 @@ import './Contact.css';
 export default function Contact() {
   const ref = useRef(null);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -22,11 +24,31 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    e.target.reset();
-    setTimeout(() => setSent(false), 3000);
+    setSending(true);
+    setError(false);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      formData.append('_subject', `Nouveau message depuis ${config.name}`);
+
+      const response = await fetch(`https://formsubmit.co/ajax/${config.email}`, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error('Email non envoyé');
+
+      setSent(true);
+      e.currentTarget.reset();
+      setTimeout(() => setSent(false), 3000);
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -66,19 +88,20 @@ export default function Contact() {
             <h3 className="form-title">Envoyez-moi un message</h3>
             <div className="form-group">
               <label htmlFor="name">Nom</label>
-              <input type="text" id="name" required />
+              <input type="text" id="name" name="name" required />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" required />
+              <input type="email" id="email" name="email" required />
             </div>
             <div className="form-group">
               <label htmlFor="message">Message</label>
-              <textarea id="message" rows={5} required />
+              <textarea id="message" name="message" rows={5} required />
             </div>
-            <button type="submit" className="btn-primary form-btn">
-              {sent ? 'Message envoyé !' : 'Envoyer le message'}
+            <button type="submit" className="btn-primary form-btn" disabled={sending}>
+              {sending ? 'Envoi en cours...' : sent ? 'Message envoyé !' : 'Envoyer le message'}
             </button>
+            {error && <p role="alert">L’envoi a échoué. Réessayez dans un instant.</p>}
           </form>
         </div>
       </div>
