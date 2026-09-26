@@ -25,11 +25,15 @@
 }
 
 .morph-wrapper {
+  .morph-wrapper {
   width: 280px;
   height: 280px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+  background-image: url("https://media.licdn.com/dms/image/v2/D4E03AQE2Sg6PW24ZJg/profile-displayphoto-scale_200_200/B4EZ4xQMQiJoAg-/0/1778942791052?e=1792022400&v=beta&t=LUv4U5WD6UOZXbf_JlHcHhL9Bts7n-63ntzzGsgnW0U");
+  background-size: cover;
+  background-position: center;
   position: relative;
   overflow: hidden;
+ }
 }
 
 .morph-bg {
