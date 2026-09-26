@@ -17,9 +17,11 @@ const config = {
   about: {
     title: 'À Propos de Moi',
     paragraphs: [
-      "Je suis un développeur passionné par la création d'expériences numériques modernes, que ce soit sur le web, le mobile ou l'IoT. Je conçois des interfaces futuristes, responsives et performantes.",
+      "Salut moi c'est Saïd, alias EnderTechX, développeur fullstack et mobile passionné par les technologies modernes. Je crée des applications web, mobiles et IoT avec un design futuriste et des performances optimales.",
       "Mon expertise couvre le développement web (React, Node.js), mobile (Flutter, SwiftUI) et les projets hardware/IoT. Je suis fasciné par les interfaces neon, le glassmorphism et les designs qui sortent de l'ordinaire.",
       "Quand je ne code pas, j'explore les nouvelles technologies, je contribue à des projets open-source ou je développe des prototypes hardware.",
+      "Je suis également passionné par l'administration système et la sécurité informatique, je suis très tourné vers les systèmes réseau et la cyebersécurité. J'aime comprendre comment les systèmes fonctionnent et comment les sécuriser contre les menaces potentielles.",
+      "En dehors du développement, je suis passionné par la musique électronique, le gaming et les expériences immersives. Je crois que la technologie peut transformer notre quotidien et j'aime être à l'avant-garde de cette révolution.",
     ],
   },
 
