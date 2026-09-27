@@ -15,7 +15,6 @@
 
 .about-video-bg {
   position: absolute;
-
   inset: 0;
 
   width: 100%;
@@ -25,8 +24,26 @@
   object-position: center;
 
   z-index: -2;
-
   pointer-events: none;
+
+  /* Fade de la vidéo */
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 12%,
+      black 82%,
+      transparent 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 12%,
+      black 82%,
+      transparent 100%
+    );
 }
 
 
@@ -36,23 +53,23 @@
 
 .about-video-overlay {
   position: absolute;
-
   inset: 0;
-
   z-index: -1;
-
   pointer-events: none;
 
   background:
     radial-gradient(
-      circle at 70% 50%,
-      rgba(120, 80, 255, 0.15),
-      transparent 45%
+      ellipse at center,
+      transparent 20%,
+      rgba(10, 10, 12, 0.25) 55%,
+      rgba(10, 10, 12, 0.95) 100%
     ),
     linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.88),
-      rgba(0, 0, 0, 0.55)
+      to bottom,
+      rgba(10, 10, 12, 1) 0%,
+      transparent 20%,
+      transparent 75%,
+      rgba(10, 10, 12, 1) 100%
     );
 }
 
