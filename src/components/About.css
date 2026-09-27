@@ -24,9 +24,10 @@
   object-position: center;
 
   z-index: -2;
+
   pointer-events: none;
 
-  /* Fade de la vidéo */
+  /* Fade haut / bas */
   -webkit-mask-image:
     linear-gradient(
       to bottom,
@@ -54,22 +55,35 @@
 .about-video-overlay {
   position: absolute;
   inset: 0;
+
   z-index: -1;
+
   pointer-events: none;
 
   background:
+    /* Halo central */
     radial-gradient(
       ellipse at center,
-      transparent 20%,
-      rgba(10, 10, 12, 0.25) 55%,
-      rgba(10, 10, 12, 0.95) 100%
+      transparent 15%,
+      rgba(10, 10, 12, 0.18) 50%,
+      rgba(10, 10, 12, 0.92) 100%
     ),
+
+    /* Fade vertical */
     linear-gradient(
       to bottom,
       rgba(10, 10, 12, 1) 0%,
       transparent 20%,
       transparent 75%,
       rgba(10, 10, 12, 1) 100%
+    ),
+
+    /* Assombrissement horizontal */
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.82),
+      rgba(0, 0, 0, 0.42),
+      rgba(0, 0, 0, 0.72)
     );
 }
 
@@ -92,14 +106,22 @@
 
 
 /* =========================================
-   TEXT
+   TEXT CONTAINER
    ========================================= */
 
 .about-text {
   position: relative;
 
   z-index: 5;
+
+  animation:
+    aboutTextReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+
+/* =========================================
+   TEXT APPEARANCE
+   ========================================= */
 
 .about-p {
   color: var(--text-secondary);
@@ -111,7 +133,30 @@
   font-size: 1rem;
 
   max-width: 650px;
+
+  animation:
+    paragraphReveal 1s ease-out both;
+
+  animation-delay: 0.25s;
 }
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.about-text .section-title {
+  position: relative;
+
+  animation:
+    titleFloat 6s ease-in-out infinite,
+    titleGlow 4s ease-in-out infinite;
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
 
 .about-buttons {
   display: flex;
@@ -121,11 +166,130 @@
   margin-top: 32px;
 
   flex-wrap: wrap;
+
+  animation:
+    buttonsReveal 1s ease-out both;
+
+  animation-delay: 0.45s;
 }
 
 
 /* =========================================
-   IMAGE CONTAINER
+   TEXT REVEAL
+   ========================================= */
+
+@keyframes aboutTextReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(35px);
+
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+    filter: blur(0);
+  }
+
+}
+
+
+/* =========================================
+   PARAGRAPH REVEAL
+   ========================================= */
+
+@keyframes paragraphReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================
+   BUTTON REVEAL
+   ========================================= */
+
+@keyframes buttonsReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================
+   TITLE FLOAT
+   ========================================= */
+
+@keyframes titleFloat {
+
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-5px);
+  }
+
+}
+
+
+/* =========================================
+   TITLE GLOW
+   ========================================= */
+
+@keyframes titleGlow {
+
+  0%,
+  100% {
+    text-shadow:
+      0 0 0 transparent;
+  }
+
+  50% {
+    text-shadow:
+      0 0 20px rgba(255, 255, 255, 0.12),
+      0 0 40px rgba(120, 80, 255, 0.12);
+  }
+
+}
+
+
+/* =========================================
+   PROFILE AREA
    ========================================= */
 
 .about-image {
@@ -138,11 +302,14 @@
   position: relative;
 
   z-index: 5;
+
+  transition:
+    transform 0.25s ease-out;
 }
 
 
 /* =========================================
-   MORPH PROFILE
+   MORPH WRAPPER
    ========================================= */
 
 .morph-wrapper {
@@ -167,11 +334,14 @@
     0 0 30px rgba(255, 255, 255, 0.08),
     0 0 70px rgba(120, 80, 255, 0.20),
     0 25px 80px rgba(0, 0, 0, 0.55);
+
+  transition:
+    box-shadow 0.6s ease;
 }
 
 
 /* =========================================
-   GLOW
+   PROFILE GLOW
    ========================================= */
 
 .morph-glow {
@@ -187,7 +357,8 @@
       var(--accent)
     );
 
-  filter: blur(40px);
+  filter:
+    blur(40px);
 
   opacity: 0.55;
 
@@ -218,7 +389,8 @@
 
   z-index: 2;
 
-  transform: scale(1.02);
+  transform:
+    scale(1.02);
 
   filter:
     saturate(1.05)
@@ -231,7 +403,7 @@
 
 
 /* =========================================
-   LIGHT BORDER
+   PROFILE BORDER
    ========================================= */
 
 .morph-wrapper::after {
@@ -245,7 +417,8 @@
     1px solid
     rgba(255, 255, 255, 0.22);
 
-  border-radius: inherit;
+  border-radius:
+    inherit;
 
   pointer-events: none;
 
@@ -258,11 +431,20 @@
 
 
 /* =========================================
-   HOVER
+   PROFILE HOVER
    ========================================= */
 
+.morph-wrapper:hover {
+  box-shadow:
+    0 0 40px rgba(255, 255, 255, 0.10),
+    0 0 100px rgba(120, 80, 255, 0.28),
+    0 25px 90px rgba(0, 0, 0, 0.65);
+}
+
+
 .morph-wrapper:hover .morph-profile {
-  transform: scale(1.08);
+  transform:
+    scale(1.08);
 
   filter:
     saturate(1.15)
@@ -271,12 +453,13 @@
 
 
 /* =========================================
-   WAVE MORPH
+   PROFILE WAVE
    ========================================= */
 
 @keyframes profileWave {
 
   0% {
+
     border-radius:
       58% 42% 63% 37%
       /
@@ -284,6 +467,7 @@
   }
 
   20% {
+
     border-radius:
       43% 57% 48% 52%
       /
@@ -291,6 +475,7 @@
   }
 
   40% {
+
     border-radius:
       64% 36% 43% 57%
       /
@@ -298,6 +483,7 @@
   }
 
   60% {
+
     border-radius:
       46% 54% 61% 39%
       /
@@ -305,6 +491,7 @@
   }
 
   80% {
+
     border-radius:
       61% 39% 47% 53%
       /
@@ -312,6 +499,7 @@
   }
 
   100% {
+
     border-radius:
       58% 42% 63% 37%
       /
@@ -322,24 +510,46 @@
 
 
 /* =========================================
-   GLOW ANIMATION
+   GLOW PULSE
    ========================================= */
 
 @keyframes glowPulse {
 
   0%,
   100% {
-    transform: scale(0.95);
 
-    opacity: 0.40;
+    transform:
+      scale(0.95);
+
+    opacity:
+      0.40;
   }
 
   50% {
-    transform: scale(1.08);
 
-    opacity: 0.70;
+    transform:
+      scale(1.08);
+
+    opacity:
+      0.70;
   }
 
+}
+
+
+/* =========================================
+   BUTTON HOVER
+   ========================================= */
+
+.about-buttons a {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-buttons a:hover {
+  transform:
+    translateY(-3px);
 }
 
 
@@ -350,6 +560,7 @@
 @media (max-width: 768px) {
 
   .about-grid {
+
     grid-template-columns: 1fr;
 
     gap: 50px;
@@ -359,6 +570,7 @@
 
 
   .about-image {
+
     order: -1;
 
     padding-top: 30px;
@@ -366,18 +578,28 @@
 
 
   .morph-wrapper {
+
     width: 240px;
     height: 240px;
   }
 
 
   .about-video-overlay {
+
     background:
       linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0.85),
-        rgba(0, 0, 0, 0.65)
+        rgba(10, 10, 12, 0.90),
+        rgba(10, 10, 12, 0.60),
+        rgba(10, 10, 12, 0.90)
       );
+  }
+
+
+  .about-text .section-title {
+
+    animation:
+      titleGlow 4s ease-in-out infinite;
   }
 
 }
@@ -389,12 +611,19 @@
 
 @media (prefers-reduced-motion: reduce) {
 
+  .about-text,
+  .about-p,
+  .about-buttons,
+  .about-text .section-title,
   .morph-wrapper,
   .morph-glow {
+
     animation: none;
   }
 
+
   .morph-wrapper {
+
     border-radius:
       55% 45% 50% 50%
       /
