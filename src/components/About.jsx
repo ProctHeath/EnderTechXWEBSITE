@@ -1,4 +1,3 @@
-jsx
 import { useRef, useEffect } from 'react';
 import config from '../data/config';
 import './About.css';
@@ -29,7 +28,10 @@ export default function About() {
   return (
     <section id="about" className="section about-section">
 
-      {/* VIDÉO DE FOND */}
+      {/* =====================================
+          VIDEO BACKGROUND
+          ===================================== */}
+
       <video
         className="about-video-bg"
         autoPlay
@@ -38,20 +40,25 @@ export default function About() {
         playsInline
         preload="auto"
       >
-        <source
-          src="https://freestockfootagearchive.com/wp-content/uploads/2020/10/Abstract-Energy-Flow-Dark-Background-Video-Loop.mp4"
-          type="video/mp4"
-        />
+        <source src="/background.mp4" type="video/mp4" />
       </video>
 
-      {/* VOILE POUR LA LISIBILITÉ */}
+      {/* Overlay sombre */}
       <div className="about-video-overlay"></div>
+
+
+      {/* =====================================
+          CONTENT
+          ===================================== */}
 
       <div className="container fade-in" ref={ref}>
 
         <div className="about-grid">
 
-          {/* TEXTE */}
+          {/* =================================
+              TEXT
+              ================================= */}
+
           <div className="about-text">
 
             <h2
@@ -69,7 +76,10 @@ export default function About() {
 
             <div className="about-buttons">
 
-              <a href="#contact" className="btn-primary">
+              <a
+                href="#contact"
+                className="btn-primary"
+              >
                 Me contacter
               </a>
 
@@ -84,15 +94,19 @@ export default function About() {
 
           </div>
 
-          {/* PHOTO DE PROFIL */}
+
+          {/* =================================
+              PROFILE IMAGE
+              ================================= */}
+
           <div className="about-image">
 
             <div className="morph-wrapper">
 
-              {/* Halo lumineux */}
+              {/* Halo derrière la photo */}
               <div className="morph-glow"></div>
 
-              {/* PHOTO */}
+              {/* Photo de profil */}
               <img
                 className="morph-profile"
                 src="https://media.licdn.com/dms/image/v2/D4E03AQE2Sg6PW24ZJg/profile-displayphoto-scale_200_200/B4EZ4xQMQiJoAg-/0/1778942791052?e=1792022400&v=beta&t=LUv4U5WD6UOZXbf_JlHcHhL9Bts7n-63ntzzGsgnW0U"
@@ -106,6 +120,7 @@ export default function About() {
         </div>
 
       </div>
+
     </section>
   );
 }
