@@ -1,3 +1,4 @@
+jsx
 import { useRef, useEffect } from 'react';
 import config from '../data/config';
 import './About.css';
@@ -7,7 +8,9 @@ export default function About() {
 
   useEffect(() => {
     const el = ref.current;
+
     if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -17,33 +20,91 @@ export default function About() {
       },
       { threshold: 0.1 }
     );
+
     observer.observe(el);
+
     return () => observer.disconnect();
   }, []);
 
   return (
     <section id="about" className="section about-section">
+
+      {/* VIDÉO DE FOND */}
+      <video
+        className="about-video-bg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      >
+        <source
+          src="https://freestockfootagearchive.com/wp-content/uploads/2020/10/Abstract-Energy-Flow-Dark-Background-Video-Loop.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      {/* VOILE POUR LA LISIBILITÉ */}
+      <div className="about-video-overlay"></div>
+
       <div className="container fade-in" ref={ref}>
+
         <div className="about-grid">
+
+          {/* TEXTE */}
           <div className="about-text">
-            <h2 className="section-title" style={{ textAlign: 'left' }}>{config.about.title}</h2>
+
+            <h2
+              className="section-title"
+              style={{ textAlign: 'left' }}
+            >
+              {config.about.title}
+            </h2>
+
             {config.about.paragraphs.map((p, i) => (
-              <p key={i} className="about-p">{p}</p>
+              <p key={i} className="about-p">
+                {p}
+              </p>
             ))}
+
             <div className="about-buttons">
-              <a href="#contact" className="btn-primary">Me contacter</a>
-              <a href={config.resumeUrl} className="btn-outline">Télécharger CV</a>
+
+              <a href="#contact" className="btn-primary">
+                Me contacter
+              </a>
+
+              <a
+                href={config.resumeUrl}
+                className="btn-outline"
+              >
+                Télécharger CV
+              </a>
+
             </div>
+
           </div>
+
+          {/* PHOTO DE PROFIL */}
           <div className="about-image">
-            <div className="morph-wrapper animate-morph">
-              <div className="morph-bg" />
-              <div className="morph-placeholder">
-                <i className="fa-solid fa-user" />
-              </div>
+
+            <div className="morph-wrapper">
+
+              {/* Halo lumineux */}
+              <div className="morph-glow"></div>
+
+              {/* PHOTO */}
+              <img
+                className="morph-profile"
+                src="https://media.licdn.com/dms/image/v2/D4E03AQE2Sg6PW24ZJg/profile-displayphoto-scale_200_200/B4EZ4xQMQiJoAg-/0/1778942791052?e=1792022400&v=beta&t=LUv4U5WD6UOZXbf_JlHcHhL9Bts7n-63ntzzGsgnW0U"
+                alt="Photo de profil"
+              />
+
             </div>
+
           </div>
+
         </div>
+
       </div>
     </section>
   );

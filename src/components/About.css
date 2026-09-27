@@ -1,71 +1,358 @@
+/* =========================================
+   ABOUT SECTION
+   ========================================= */
+
+.about-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* =========================================
+   VIDÉO DE FOND
+   ========================================= */
+
+.about-video-bg {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: -2;
+
+  pointer-events: none;
+}
+
+/* =========================================
+   OVERLAY
+   ========================================= */
+
+.about-video-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 70% 50%,
+      rgba(120, 80, 255, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.88),
+      rgba(0, 0, 0, 0.60)
+    );
+
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+/* =========================================
+   GRID
+   ========================================= */
+
 .about-grid {
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 64px;
+
   align-items: center;
+
+  min-height: 650px;
+}
+
+/* =========================================
+   TEXTE
+   ========================================= */
+
+.about-text {
+  position: relative;
+  z-index: 5;
 }
 
 .about-p {
   color: var(--text-secondary);
+
   line-height: 1.8;
+
   margin-bottom: 16px;
+
   font-size: 1rem;
+
+  max-width: 650px;
 }
 
 .about-buttons {
   display: flex;
+
   gap: 16px;
+
   margin-top: 32px;
+
   flex-wrap: wrap;
 }
 
+/* =========================================
+   PHOTO
+   ========================================= */
+
 .about-image {
   display: flex;
+
   justify-content: center;
+
+  align-items: center;
+
+  position: relative;
+
+  z-index: 5;
 }
+
+/* =========================================
+   MORPH WRAPPER
+   ========================================= */
 
 .morph-wrapper {
-  .morph-wrapper {
-  width: 280px;
-  height: 280px;
-  background-image: url("https://media.licdn.com/dms/image/v2/D4E03AQE2Sg6PW24ZJg/profile-displayphoto-scale_200_200/B4EZ4xQMQiJoAg-/0/1778942791052?e=1792022400&v=beta&t=LUv4U5WD6UOZXbf_JlHcHhL9Bts7n-63ntzzGsgnW0U");
-  background-size: cover;
-  background-position: center;
+  width: 320px;
+  height: 320px;
+
   position: relative;
+
   overflow: hidden;
- }
+
+  isolation: isolate;
+
+  border-radius:
+    58% 42% 63% 37%
+    /
+    45% 58% 42% 55%;
+
+  animation:
+    profileWave 9s ease-in-out infinite;
+
+  box-shadow:
+    0 0 30px rgba(255, 255, 255, 0.08),
+    0 0 80px rgba(120, 80, 255, 0.18),
+    0 25px 80px rgba(0, 0, 0, 0.55);
 }
 
-.morph-bg {
+/* =========================================
+   HALO
+   ========================================= */
+
+.morph-glow {
   position: absolute;
-  inset: 0;
-  background: inherit;
-  filter: blur(40px);
-  opacity: 0.5;
-  animation: morph 8s ease-in-out infinite;
+
+  inset: -25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary),
+      var(--accent)
+    );
+
+  filter: blur(35px);
+
+  opacity: 0.55;
+
+  animation: glowPulse 5s ease-in-out infinite;
+
+  z-index: -1;
 }
 
-.morph-placeholder {
+/* =========================================
+   PHOTO
+   ========================================= */
+
+.morph-profile {
   position: absolute;
+
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  color: white;
-  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  z-index: 2;
+
+  transform: scale(1.02);
+
+  filter:
+    saturate(1.05)
+    contrast(1.03);
+
+  transition:
+    transform 0.6s ease,
+    filter 0.6s ease;
 }
+
+/* =========================================
+   CONTOUR LUMINEUX
+   ========================================= */
+
+.morph-wrapper::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.22);
+
+  border-radius: inherit;
+
+  pointer-events: none;
+
+  z-index: 4;
+
+  box-shadow:
+    inset 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================
+   HOVER
+   ========================================= */
+
+.morph-wrapper:hover .morph-profile {
+  transform: scale(1.08);
+
+  filter:
+    saturate(1.15)
+    contrast(1.05);
+}
+
+/* =========================================
+   WAVE / MORPH
+   ========================================= */
+
+@keyframes profileWave {
+
+  0% {
+    border-radius:
+      58% 42% 63% 37%
+      /
+      45% 58% 42% 55%;
+  }
+
+  20% {
+    border-radius:
+      43% 57% 48% 52%
+      /
+      59% 43% 57% 41%;
+  }
+
+  40% {
+    border-radius:
+      64% 36% 43% 57%
+      /
+      48% 63% 37% 52%;
+  }
+
+  60% {
+    border-radius:
+      46% 54% 61% 39%
+      /
+      55% 38% 62% 45%;
+  }
+
+  80% {
+    border-radius:
+      61% 39% 47% 53%
+      /
+      42% 60% 40% 58%;
+  }
+
+  100% {
+    border-radius:
+      58% 42% 63% 37%
+      /
+      45% 58% 42% 55%;
+  }
+}
+
+/* =========================================
+   GLOW ANIMATION
+   ========================================= */
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.40;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 0.70;
+  }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
 
 @media (max-width: 768px) {
+
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+
+    gap: 50px;
+
+    min-height: auto;
   }
+
   .about-image {
     order: -1;
+
+    padding-top: 30px;
   }
+
   .morph-wrapper {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
+  }
+
+  .about-video-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.82),
+        rgba(0, 0, 0, 0.68)
+      );
   }
 }
+
+/* =========================================
+   ACCESSIBILITÉ
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .morph-wrapper,
+  .morph-glow {
+    animation: none;
+  }
+
+  .morph-wrapper {
+    border-radius:
+      55% 45% 50% 50%
+      /
+      50% 55% 45% 50%;
+  }
+}
+
